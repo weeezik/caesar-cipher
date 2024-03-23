@@ -1,10 +1,15 @@
+require 'pry-byebug'
+
 #goes in as a parameter of caesar_cipher method: shift_factor = 3
 
 def caesar_cipher (string, shift_factor = 5)
   codepoints_array = string.codepoints #returns array of integer codepoint values
-  
+
   new_letter_array = codepoints_array.map do |codepoint|
     new_codepoint = codepoint + shift_factor #change its codepoint by shift_factor positions
+
+    binding.pry
+
     new_letter = new_codepoint.chr #convert from code point array to char array
     new_letter #return array of new letter, like ["K", "h", "o", "o", "r"]
   end
