@@ -9,7 +9,7 @@ def caesar_cipher (string, shift_factor = 5)
     if codepoint.between?(65, 90) == true    #allcaps check
       new_codepoint = codepoint + shift_factor
       if new_codepoint > 90 #is new codepoint out of boundary?
-        add_start_position = shift_factor - (90 - codepoint)
+        add_start_position = shift_factor - (91 - codepoint)
         new_codepoint = 65 + add_start_position
         new_codepoint        
       else
@@ -18,7 +18,7 @@ def caesar_cipher (string, shift_factor = 5)
     elsif codepoint.between?(97, 122) == true   #lowercase check
       new_codepoint = codepoint + shift_factor
       if new_codepoint > 122 #is new codepoint out of boundary?
-        add_start_position = shift_factor - (122 - codepoint)
+        add_start_position = shift_factor - (123 - codepoint)
         new_codepoint = 97 + add_start_position
         new_codepoint
       else
@@ -27,7 +27,7 @@ def caesar_cipher (string, shift_factor = 5)
     else
       new_codepoint = codepoint
     end
-    
+
     new_letter = new_codepoint.chr #convert from code point array to char array
     new_letter #return array of new letter, like ["K", "h", "o", "o", "r"]
   end
@@ -41,8 +41,9 @@ def caesar_cipher (string, shift_factor = 5)
   new_letter_array.join #convert from array to string (join function)
 end
 
-puts caesar_cipher("What a string!")
+puts caesar_cipher("What a string!", 5)
 
-#Account for these:
+#Accounts for these:
     #1. spaces! (% should be " ")
     #2. wrap from a to z AND z to a
+    #3. punctuation like "!" remains punctuation
