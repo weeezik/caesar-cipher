@@ -6,10 +6,28 @@ def caesar_cipher (string, shift_factor = 5)
   codepoints_array = string.codepoints #returns array of integer codepoint values
 
   new_letter_array = codepoints_array.map do |codepoint|
-    new_codepoint = codepoint + shift_factor #change its codepoint by shift_factor positions
-
-    binding.pry
-
+    if codepoint.between?(65, 90) == true    #allcaps check
+      new_codepoint = codepoint + shift_factor
+      if new_codepoint > 90 #is new codepoint out of boundary?
+        add_start_position = shift_factor - (90 - codepoint)
+        new_codepoint = 65 + add_start_position
+        new_codepoint        
+      else
+        new_codepoint
+      end
+    elsif codepoint.between?(97, 122) == true   #lowercase check
+      new_codepoint = codepoint + shift_factor
+      if new_codepoint > 122 #is new codepoint out of boundary?
+        add_start_position = shift_factor - (122 - codepoint)
+        new_codepoint = 97 + add_start_position
+        new_codepoint
+      else
+        new_codepoint
+      end
+    else
+      new_codepoint = codepoint
+    end
+    
     new_letter = new_codepoint.chr #convert from code point array to char array
     new_letter #return array of new letter, like ["K", "h", "o", "o", "r"]
   end
@@ -23,7 +41,7 @@ def caesar_cipher (string, shift_factor = 5)
   new_letter_array.join #convert from array to string (join function)
 end
 
-puts caesar_cipher("What a string")
+puts caesar_cipher("What a string!")
 
 #Account for these:
     #1. spaces! (% should be " ")
